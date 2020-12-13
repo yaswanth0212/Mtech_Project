@@ -1,0 +1,1063 @@
+<html>
+<head>
+<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+<meta content="utf-8" http-equiv="encoding">
+<title>PATIENT | VERIFICATION DETAILS</title>
+<style>
+* {
+  box-sizing: border-box;
+  
+}
+
+p1{
+  position: absolute;
+  top: 115px;
+  left: 40px;
+ 
+}
+input[type=image]{
+  position: absolute;
+  top: 8px;
+  left: 16px;
+}
+
+
+.button {
+  background-color: #f44336;
+  border: none;
+  color: white;
+  padding: 6px 10px;
+  text-align: center;
+  text-decoration: underline;
+  display: inline-block;
+  font-size: 15px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+.button2{
+  background-color: green;
+  border: none;
+  color: white;
+  padding: 6px 10px;
+  text-align: center;
+  text-decoration: underline;
+  display: inline-block;
+  font-size: 15px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.button4 {
+  background-color: #f44336;
+  border: none;
+  color: white;
+  padding: 26px 30px;
+  text-align: center;
+  text-decoration: underline;
+  display: inline-block;
+  font-size: 35px;
+  margin: 4px 2px;
+   margin: 0;
+  position: absolute;
+  top: 80%;
+  left: 78%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  
+}
+fieldset{
+
+}
+.button1 {
+  background-color: #f44336;
+  border: none;
+  color: white;
+  padding: 26px 30px;
+  text-align: center;
+  text-decoration: underline;
+  display: inline-block;
+  font-size: 35px;
+  margin: 4px 2px;
+   margin: 0;
+  position: absolute;
+  top: 10%;
+  left: 5%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  
+}
+/* Style the header */
+.header {
+  background-color: Yellow;
+  padding: 20px;
+  text-align: center;
+  color: Black;
+  font:bold;
+}
+
+
+/* Style the top navigation bar */
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+}
+
+/* Style the topnav links */
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* Change color on hover */
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+  
+}
+
+/* Create three equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 65%;
+  padding: 15px;
+}body {
+  background-image: url('1.png');
+background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media screen and (max-width:600px) {
+  .column {
+    width: 100%;
+  }
+}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/web3@1.2.8/dist/web3.js"></script>
+<script>	
+	
+	var account;
+	window.addEventListener('load', async () => {
+
+	
+		if (typeof window.ethereum !== 'undefined') { 
+			console.log("MetaMask is Available :) !"); 
+			}
+			
+		// Modern DApp browsers
+		if (window.ethereum) {
+			window.web3 = new Web3(ethereum);
+			
+			// To prevent the page reloading when the MetaMask network changes
+			ethereum.autoRefreshOnNetworkChange = false;
+			
+			// To Capture the account details from MetaMask
+			const accounts = await ethereum.enable();
+			account = accounts[0];
+				
+			}
+		// Legacy DApp browsers
+		else if (window.web3) {
+			//window.web3 = new Web3(web3.currentProvider);
+			window.web3 = new Web3(new Web3.providers.HttpProvider("https://ropsten.infura.io/v3/cbd9dc11b30147e9a2cc974be655ef7c")); 
+			}
+		// Non-DApp browsers
+		else {
+			console.log('Non-Ethereum browser detected. Please install MetaMask');
+			}
+			
+			});
+			var abi = [
+	{
+		"inputs": [],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "owner",
+				"type": "address"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "approved",
+				"type": "address"
+			},
+			{
+				"indexed": true,
+				"internalType": "uint256",
+				"name": "tokenId",
+				"type": "uint256"
+			}
+		],
+		"name": "Approval",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "owner",
+				"type": "address"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "operator",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "bool",
+				"name": "approved",
+				"type": "bool"
+			}
+		],
+		"name": "ApprovalForAll",
+		"type": "event"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "to",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "tokenId",
+				"type": "uint256"
+			}
+		],
+		"name": "approve",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "pid",
+				"type": "uint256"
+			}
+		],
+		"name": "burnMyToken",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "pid",
+				"type": "uint256"
+			}
+		],
+		"name": "mintMyToken",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "from",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "to",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "tokenId",
+				"type": "uint256"
+			}
+		],
+		"name": "safeTransferFrom",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "from",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "to",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "tokenId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "bytes",
+				"name": "_data",
+				"type": "bytes"
+			}
+		],
+		"name": "safeTransferFrom",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "id",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "file1",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "file2",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "file3",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "file4",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "file5",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "file6",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "file7",
+				"type": "string"
+			}
+		],
+		"name": "sendPatientDetails",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "operator",
+				"type": "address"
+			},
+			{
+				"internalType": "bool",
+				"name": "approved",
+				"type": "bool"
+			}
+		],
+		"name": "setApprovalForAll",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "from",
+				"type": "address"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "to",
+				"type": "address"
+			},
+			{
+				"indexed": true,
+				"internalType": "uint256",
+				"name": "tokenId",
+				"type": "uint256"
+			}
+		],
+		"name": "Transfer",
+		"type": "event"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "from",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "to",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "tokenId",
+				"type": "uint256"
+			}
+		],
+		"name": "transferFrom",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "owner",
+				"type": "address"
+			}
+		],
+		"name": "balanceOf",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "baseURI",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "tokenId",
+				"type": "uint256"
+			}
+		],
+		"name": "getApproved",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getfileId",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "fileId",
+				"type": "uint256"
+			}
+		],
+		"name": "getPatientDetails",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "owner",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "operator",
+				"type": "address"
+			}
+		],
+		"name": "isApprovedForAll",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "name",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "namedecl",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "tokenId",
+				"type": "uint256"
+			}
+		],
+		"name": "ownerOf",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "bytes4",
+				"name": "interfaceId",
+				"type": "bytes4"
+			}
+		],
+		"name": "supportsInterface",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "symbol",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "symboldecl",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"name": "tokenByIndex",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "owner",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"name": "tokenOfOwnerByIndex",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "tokenId",
+				"type": "uint256"
+			}
+		],
+		"name": "tokenURI",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "totalSupply",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "totalSupplycount",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	}
+]
+		var contract_address='0x864EA093AEa565cC05cf5432D250F1e1E5dbf2cB'
+			
+		function getHashDetails()
+		{
+					
+				console.log("Invoking Smart Contracts - Get Student Details");
+				
+				//Instantiate and connect to contract address via ABI
+				var myContract = new web3.eth.Contract(abi,contract_address,{from: account, gasPrice: '500000', gas:'500000'});            
+										
+				//call the retrieve function
+				var iddd = document.getElementById("pid").value;
+				console.log(iddd);
+				//call the retrieve function
+				var result = myContract.methods.getPatientDetails(iddd).call(function (err, result) {
+				
+				if (err) { console.log(err); }
+				if (result) { 
+					
+					document.getElementById("get_ECG").value = result[0];
+					document.getElementById("get_MRI").value = result[1];
+					document.getElementById("get_XRAY").value = result[2];
+					document.getElementById("get_CARDIO").value = result[3];
+					document.getElementById("get_BLOOD").value = result[4];
+					document.getElementById("get_COVID").value = result[5];
+					document.getElementById("get_ENDOSCOPE").value = result[6];
+					
+					
+					
+					
+					}
+				
+				});
+					
+			
+}
+
+function del_details() {
+            var myContract = new web3.eth.Contract(abi,contract_address, {from: account, gasPrice: '5000000', gas: '500000'});
+            var idwe = document.getElementById("id2").value;
+             var result = myContract.methods.burnMyToken(idwe).send(function (err, result) {
+               
+                if (err) { console.log(err); }
+                if (result) { 
+                    document.getElementById("result1").innerHTML = result;
+                }
+               
+                });
+        }
+
+    </script>
+</head>
+    
+		
+<body style="background-image:1.png";"max-width:100%;height:auto;>
+	<div class="header">
+
+		<input type="image" src="home.png" alt="Submit" onclick="home()" width="100" height="100"><p1><b>HOME</b></p1></input>
+  <script>
+function home() {
+  location.replace("index.html")
+}
+</script>
+
+
+  <h1>PATIENT  REPORT STORAGE</h1>
+  <h2>PATIENT REPORT DETAILS </h2>
+
+</div>
+        
+		
+				
+		
+         <fieldset>
+			<h1 align=ce>Verification Details </h1>
+		 <a href="index.html"><b>Back</b> </a>
+		 
+         <br>
+		 <form>
+		 <table style="margin:10px;">
+		 <tr>
+			<td>Patient ID:</td>
+			<td><input type="text" id="pid" name="patient_id" placeholder="Enter Patient ID"></td>
+		  </tr>
+		
+         <tr>
+			<td>ECG:</td>
+			<td><input type="text" id="get_ECG" value=" " > <button class="button2" onclick="myFunction()">Copy Hash</button><button class="button2" onclick="myFunction2()">Open-File</button></td>
+			
+		  </tr>
+		  <tr>
+			<td>MRI:</td>
+			
+			<td><input type="text" id="get_MRI" value=" " > <button class="button2" onclick="myFunction3()">Copy Hash</button><button class="button2" onclick="myFunction4()">Open-File</button></td>
+		  </tr>
+		  <tr>
+			<td>XRAY:</td>
+			
+			<td><input type="text" id="get_XRAY" value=" " > <button class="button2" onclick="myFunction5()">Copy Hash</button><button class="button2" onclick="myFunction6()">Open-File</button></td>
+		  </tr>
+		  <tr>
+			<td>CARDIO:</td>
+		
+			<td><input type="text" id="get_CARDIO" value=" " > <button class="button2" onclick="myFunction7()">Copy Hash</button><button class="button2" onclick="myFunction8()">Open-File</button></td>
+		  </tr>
+		  <tr>
+			<td>BLOOD:</td>
+		
+			<td><input type="text" id="get_BLOOD" value=" " > <button class="button2" onclick="myFunction9()">Copy Hash</button><button class="button2" onclick="myFunction10()">Open-File</button></td>
+		  </tr>
+		  <tr>
+			<td>COVID:</td>
+			
+			<td><input type="text" id="get_COVID" value=" " > <button class="button2" onclick="myFunction11()">Copy Hash</button><button class="button2" onclick="myFunction12()">Open-File</button></td>
+		  </tr>
+		  <tr>
+			<td>ENDOSCOPE:</td>
+			
+			<td><input type="text" id="get_ENDOSCOPE" value=" " > <button class="button2" onclick="myFunction13()">Copy Hash</button><button class="button2" onclick="myFunction14()">Open-File</button></td>
+		  </tr>
+		  <tr>
+			<td><input type="button" class="button" onclick="getHashDetails()" value="GET PATIENT DETAILS"></td>
+			
+			</tr>
+		</form>
+	</fieldset>
+	
+       					
+	<h2>REMOVE FILE</h2>
+    <form>
+		<table style="margin:10px;">
+            <tr>
+			<td>ENTER_EXISTING_FILE_ID:</td>
+			<td><input type="text" id="id2" name="id2"></td>
+		  </tr>
+		  <tr>
+		  <td><input type="button" class="button" onclick="del_details()" value="DELETE EMPLOYEE"></td>
+		  </tr>
+		</table>
+		
+		<h4> TRANSACTION ID: <a href=""><div id="result1"></div></a></h4> 
+	</form>
+			
+	
+	
+	
+
+<script>
+	
+	function myFunction() {
+  		var copyText = document.getElementById("get_ECG");
+ 		copyText.select();
+  		copyText.setSelectionRange(0, 99999)		
+  		document.execCommand("copy");
+  		alert("Copied the Hash: " + copyText.value);
+	}
+
+
+	function myFunction2() {
+  		var copyText = document.getElementById("get_ECG");
+  		copyText.select();
+  		copyText.setSelectionRange(0, 99999)
+  		window.open("https://ipfs.io/ipfs/"+copyText.value);
+  
+	}
+
+	
+	function myFunction3() {
+  		var copyText = document.getElementById("get_MRI");
+ 		copyText.select();
+  		copyText.setSelectionRange(0, 99999)		
+  		document.execCommand("copy");
+  		alert("Copied the Hash: " + copyText.value);
+	}
+
+
+	function myFunction4() {
+  		var copyText = document.getElementById("get_MRI");
+  		copyText.select();
+  		copyText.setSelectionRange(0, 99999)
+  		window.open("https://ipfs.io/ipfs/"+copyText.value);
+  
+	}
+
+	
+	function myFunction5() {
+  		var copyText = document.getElementById("get_XRAY");
+ 		copyText.select();
+  		copyText.setSelectionRange(0, 99999)		
+  		document.execCommand("copy");
+  		alert("Copied the Hash: " + copyText.value);
+	}
+
+
+	function myFunction6() {
+  		var copyText = document.getElementById("get_XRAY");
+  		copyText.select();
+  		copyText.setSelectionRange(0, 99999)
+  		window.open("https://ipfs.io/ipfs/"+copyText.value);
+  
+	}
+
+	
+	function myFunction7() {
+  		var copyText = document.getElementById("get_CARDIO");
+ 		copyText.select();
+  		copyText.setSelectionRange(0, 99999)		
+  		document.execCommand("copy");
+  		alert("Copied the Hash: " + copyText.value);
+	}
+
+
+	function myFunction8() {
+  		var copyText = document.getElementById("get_CARDIO");
+  		copyText.select();
+  		copyText.setSelectionRange(0, 99999)
+  		window.open("https://ipfs.io/ipfs/"+copyText.value);
+  
+	}
+
+	
+	function myFunction9() {
+  		var copyText = document.getElementById("get_BLOOD");
+ 		copyText.select();
+  		copyText.setSelectionRange(0, 99999)		
+  		document.execCommand("copy");
+  		alert("Copied the Hash: " + copyText.value);
+	}
+
+
+	function myFunction10() {
+  		var copyText = document.getElementById("get_BLOOD");
+  		copyText.select();
+  		copyText.setSelectionRange(0, 99999)
+  		window.open("https://ipfs.io/ipfs/"+copyText.value);
+  
+	}
+
+	
+	function myFunction11() {
+  		var copyText = document.getElementById("get_COVID");
+ 		copyText.select();
+  		copyText.setSelectionRange(0, 99999)		
+  		document.execCommand("copy");
+  		alert("Copied the Hash: " + copyText.value);
+	}
+
+
+	function myFunction12() {
+  		var copyText = document.getElementById("get_COVID");
+  		copyText.select();
+  		copyText.setSelectionRange(0, 99999)
+  		window.open("https://ipfs.io/ipfs/"+copyText.value);
+  
+	}
+
+	
+	function myFunction13() {
+  		var copyText = document.getElementById("get_ENDOSCOPE");
+ 		copyText.select();
+  		copyText.setSelectionRange(0, 99999)		
+  		document.execCommand("copy");
+  		alert("Copied the Hash: " + copyText.value);
+	}
+
+
+	function myFunction14() {
+  		var copyText = document.getElementById("get_ENDOSCOPE");
+  		copyText.select();
+  		copyText.setSelectionRange(0, 99999)
+  		window.open("https://ipfs.io/ipfs/"+copyText.value);
+  
+	}
+
+
+</script>
+	
+			</body>
+		
+	</html>
+	
+
+
+
+
+
+
+
+
+
+
+
+
